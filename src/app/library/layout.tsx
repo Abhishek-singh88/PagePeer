@@ -21,15 +21,15 @@ export default function LibraryLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push('/'); // Redirect to login
+      router.push('/'); 
     } else {
-      setAuthChecked(true); // Only show layout after auth check
+      setAuthChecked(true); 
     }
   }, [isAuthenticated, router]);
 
   const handleLogout = async () => {
     await signOut();
-    router.push('/'); // Redirect to login after logout
+    router.push('/'); 
   };
 
   if (!authChecked) {
