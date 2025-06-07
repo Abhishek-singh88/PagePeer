@@ -10,6 +10,7 @@ const navItems = [
   { label: 'Explore Library', path: '/library/explore' },
   { label: 'My NFTs', path: '/library/nfts' },
   { label: 'Mint Book NFT', path: '/library/mint' },
+  { label: 'Account', path: '/library/account' }, 
 ];
 
 export default function LibraryLayout({ children }: { children: ReactNode }) {
