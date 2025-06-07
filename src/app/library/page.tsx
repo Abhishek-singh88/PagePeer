@@ -1,32 +1,71 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useUser } from '@civic/auth-web3/react';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
-export default function LibraryPage() {
-  const router = useRouter();
-  const { isAuthenticated, user } = useUser() as any;
+type Book = {
+  id: string;
+  title: string;
+  author: string;
+  image: string;
+  description: string;
+  previewLink?: string;
+};
+
+export default function UserLibraryPage() {
+  const [books, setBooks] = useState<Book[]>([]);
+  const { user, isAuthenticated } = useUser() as any;
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/'); // Redirect to login if not authenticated
-    }
-  }, [isAuthenticated, router]);
+    const fetchBooks = async () => {
+      if (!user?.email) return;
 
-  if (!isAuthenticated) return null;
+      const res = await fetch(`/api/get-books?email=${user.email}`);
+      const data = await res.json();
+
+      if (data.success) {
+        setBooks(data.books);
+      }
+    };
+
+    fetchBooks();
+  }, [user]);
+
+  if (!isAuthenticated) {
+    return (
+      <main className="min-h-screen flex items-center justify-center text-xl text-red-600">
+        Please login to access your library.
+      </main>
+    );
+  }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-3xl font-bold mb-6">📚 Welcome to the e-Library</h1>
-      <p className="text-lg">Hello {user?.email}, here are your books:</p>
-
-      {/* Replace with dynamic book data later */}
-      <ul className="mt-6 space-y-2">
-        <li className="bg-gray-100 p-3 rounded shadow">📘 Blockchain Basics</li>
-        <li className="bg-gray-100 p-3 rounded shadow">📕 Decentralized Apps</li>
-        <li className="bg-gray-100 p-3 rounded shadow">📗 Solana vs Ethereum</li>
-      </ul>
-    </main>
+    <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {books.length === 0 ? (
+        <p className="col-span-full text-center text-gray-600">
+          Your library is empty. Add books from the Explore section.
+        </p>
+      ) : (
+        books.map((book) => (
+          <div key={book.id} className="bg-white shadow rounded p-4">
+            <img
+              src={book.image || '/book-placeholder.png'}
+              alt={book.title}
+              className="h-40 w-full object-cover mb-3"
+            />
+            <h2 className="text-lg font-bold">{book.title}</h2>
+            <p className="text-sm text-gray-600 mb-2">{book.author}</p>
+            <button
+              onClick={() =>
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(book.title)}+book+preview`, '_blank')
+              }
+              className="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              📖 Read Book
+            </button>
+          </div>
+        ))
+      )}
+    </div>
   );
 }
