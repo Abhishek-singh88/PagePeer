@@ -59,8 +59,7 @@ export default function LibraryLayout({ children }: { children: ReactNode }) {
         </div>
         <button
           onClick={handleLogout}
-          className="text-sm px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-        >
+          className="text-sm px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 cursor-pointer">
           Logout
         </button>
       </nav>

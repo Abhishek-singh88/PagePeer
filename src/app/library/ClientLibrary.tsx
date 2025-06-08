@@ -2,15 +2,16 @@
 
 import { useState } from 'react';
 import BookCard from './BookCard';
+import { Book } from './page';
 
-export default function ClientLibrary({ books }: { books: any[] }) {
-  const [bookList, setBookList] = useState(books);
+export default function ClientLibrary({ books }: { books: Book[] }) {
+  const [bookList, setBookList] = useState<Book[]>(books ?? []);
 
   const handleDelete = (id: string) => {
-    setBookList(prev => prev.filter(book => book._id !== id));
+    setBookList((prev) => prev.filter((book) => book._id !== id));
   };
 
-  if (!bookList.length) {
+  if (!bookList || bookList.length === 0) {
     return (
       <div style={{ textAlign: 'center', marginTop: '2rem', fontSize: '1.2rem' }}>
         Your library is empty.
@@ -24,13 +25,15 @@ export default function ClientLibrary({ books }: { books: any[] }) {
         Your Library
       </h1>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-        gap: '1.5rem',
-      }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '1.5rem',
+        }}
+      >
         {bookList.map((book) => (
-          <BookCard key={book._id.toString()} book={book} onDelete={handleDelete} />
+          <BookCard key={book._id} book={book} onDelete={handleDelete} />
         ))}
       </div>
     </div>

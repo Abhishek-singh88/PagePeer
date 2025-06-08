@@ -1,14 +1,22 @@
-// components/BookCard.tsx
 'use client';
 
 import { useState } from 'react';
+import { Book } from './page';
 
-export default function BookCard({ book, onDelete }: { book: any; onDelete: (id: string) => void }) {
+export default function BookCard({
+  book,
+  onDelete,
+}: {
+  book: Book;
+  onDelete: (id: string) => void;
+}) {
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
     setLoading(true);
-    const res = await fetch(`/api/delete-book?id=${book._id}`, { method: 'DELETE' });
+    const res = await fetch(`/api/delete-book?id=${book._id}`, {
+      method: 'DELETE',
+    });
     if (res.ok) {
       onDelete(book._id);
     }
@@ -29,7 +37,6 @@ export default function BookCard({ book, onDelete }: { book: any; onDelete: (id:
         textAlign: 'center',
       }}
     >
-      {/* ❌ Delete Button */}
       <button
         onClick={handleDelete}
         disabled={loading}
@@ -76,12 +83,12 @@ export default function BookCard({ book, onDelete }: { book: any; onDelete: (id:
 
       <h3 style={{ marginBottom: '0.5rem' }}>{book.title}</h3>
       <p style={{ marginBottom: '1rem', color: '#555', fontSize: '0.9rem' }}>
-        Author: {Array.isArray(book.authors) ? book.authors[0] : book.author || 'Unknown Author'}
+        Author: {Array.isArray(book.authors) ? book.authors.join(', ') : book.authors}
       </p>
 
-      {book.previewLink ? (
+      {book.infoLink ? (
         <a
-          href={book.previewLink}
+          href={book.infoLink}
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -97,7 +104,9 @@ export default function BookCard({ book, onDelete }: { book: any; onDelete: (id:
           Read Book
         </a>
       ) : (
-        <span style={{ color: '#999', fontSize: '0.9rem' }}>No reading link available</span>
+        <span style={{ color: '#999', fontSize: '0.9rem' }}>
+          No reading link available
+        </span>
       )}
     </div>
   );
