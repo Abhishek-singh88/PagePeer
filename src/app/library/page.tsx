@@ -1,4 +1,5 @@
-// src/app/library/page.tsx
+export const dynamic = 'force-dynamic'; 
+
 import { MongoClient } from 'mongodb';
 import ClientLibrary from './ClientLibrary';
 
