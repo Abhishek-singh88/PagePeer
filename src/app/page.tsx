@@ -31,28 +31,18 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-3xl font-bold mb-6">Decentralized e-Library</h1>
+      <h1 className="text-3xl font-bold mb-6">PagePeer</h1>
 
       {isAuthenticated ? (
         <div className="text-center space-y-4">
-          <p className="text-lg font-semibold">👋 Welcome, {user?.email}</p>
-          {userContext?.ethereum?.address && (
-            <p className="font-mono bg-gray-100 text-sm p-2 rounded shadow">
-              🔗 EVM Wallet: {userContext.ethereum.address}
-            </p>
-          )}
-          {userContext?.solana?.address && (
-            <p className="font-mono bg-gray-100 text-sm p-2 rounded shadow">
-              🌐 Solana Wallet: {userContext.solana.address}
-            </p>
-          )}
+          <p className="text-lg font-semibold">👋 Welcome {user?.email}</p>
         </div>
       ) : (
         <button
           onClick={handleLogin}
           className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700"
         >
-          Login with Civic Auth
+          Login/Sign Up
         </button>
       )}
     </main>
