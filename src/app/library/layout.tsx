@@ -10,7 +10,7 @@ const navItems = [
   { label: 'Explore Library', path: '/library/explore' },
   { label: 'My NFTs', path: '/library/nfts' },
   { label: 'Mint Book NFT', path: '/library/mint' },
-  { label: 'Account', path: '/library/account' }, 
+  { label: 'Account', path: '/library/account' },
 ];
 
 export default function LibraryLayout({ children }: { children: ReactNode }) {
@@ -21,15 +21,15 @@ export default function LibraryLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push('/'); 
+      router.push('/');
     } else {
-      setAuthChecked(true); 
+      setAuthChecked(true);
     }
   }, [isAuthenticated, router]);
 
   const handleLogout = async () => {
     await signOut();
-    router.push('/'); 
+    router.push('/');
   };
 
   if (!authChecked) {
@@ -41,16 +41,16 @@ export default function LibraryLayout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow px-6 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">📚 e-Library</h1>
+    <div className="min-h-screen bg-neutral-950 text-white">
+      <nav className="bg-neutral-900 shadow px-6 py-4 flex justify-between items-center border-b border-neutral-800">
+        <h1 className="text-xl font-bold">📚 PagePeer</h1>
         <div className="flex gap-6">
           {navItems.map((item) => (
             <Link
               key={item.path}
               href={item.path}
               className={`text-sm font-medium hover:underline ${
-                pathname === item.path ? 'text-blue-600' : 'text-gray-700'
+                pathname === item.path ? 'text-teal-400' : 'text-gray-300'
               }`}
             >
               {item.label}
@@ -59,7 +59,8 @@ export default function LibraryLayout({ children }: { children: ReactNode }) {
         </div>
         <button
           onClick={handleLogout}
-          className="text-sm px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 cursor-pointer">
+          className="text-sm px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 cursor-pointer"
+        >
           Logout
         </button>
       </nav>
