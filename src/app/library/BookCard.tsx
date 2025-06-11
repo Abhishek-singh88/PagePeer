@@ -24,34 +24,11 @@ export default function BookCard({
   };
 
   return (
-    <div
-      style={{
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-        padding: '1rem',
-        boxShadow: '0 2px 5px rgb(0 0 0 / 0.1)',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-      }}
-    >
+    <div className="relative bg-neutral-900 rounded-xl shadow-lg p-4 text-center text-white border border-neutral-800 hover:shadow-md transition-shadow duration-300">
       <button
         onClick={handleDelete}
         disabled={loading}
-        style={{
-          position: 'absolute',
-          top: '8px',
-          right: '8px',
-          background: '#ff4d4d',
-          color: 'white',
-          border: 'none',
-          borderRadius: '50%',
-          width: '24px',
-          height: '24px',
-          cursor: 'pointer',
-        }}
+        className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm cursor-pointer"
         title="Delete"
       >
         ×
@@ -61,28 +38,16 @@ export default function BookCard({
         <img
           src={book.image}
           alt={book.title}
-          style={{ width: '150px', borderRadius: '5px', marginBottom: '1rem' }}
+          className="w-32 h-auto rounded-md mx-auto mb-4"
         />
       ) : (
-        <div
-          style={{
-            width: '150px',
-            height: '200px',
-            backgroundColor: '#eee',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#999',
-            borderRadius: '5px',
-            marginBottom: '1rem',
-          }}
-        >
+        <div className="w-32 h-48 bg-neutral-700 flex items-center justify-center text-neutral-400 rounded-md mx-auto mb-4">
           No Image
         </div>
       )}
 
-      <h3 style={{ marginBottom: '0.5rem' }}>{book.title}</h3>
-      <p style={{ marginBottom: '1rem', color: '#555', fontSize: '0.9rem' }}>
+      <h3 className="font-semibold text-lg mb-1">{book.title}</h3>
+      <p className="text-sm text-neutral-400 mb-4">
         Author: {Array.isArray(book.authors) ? book.authors.join(', ') : book.authors}
       </p>
 
@@ -91,22 +56,12 @@ export default function BookCard({
           href={book.infoLink}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            padding: '0.5rem 1rem',
-            backgroundColor: '#0070f3',
-            color: 'white',
-            borderRadius: '5px',
-            textDecoration: 'none',
-            fontWeight: 'bold',
-            fontSize: '0.9rem',
-          }}
+          className="inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded text-sm font-medium"
         >
           Read Book
         </a>
       ) : (
-        <span style={{ color: '#999', fontSize: '0.9rem' }}>
-          No reading link available
-        </span>
+        <span className="text-neutral-500 text-sm">No reading link available</span>
       )}
     </div>
   );
