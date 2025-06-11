@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { CivicAuthProviderWrapper } from './provider';
 
 export const metadata = {
-  title: 'Decentralized e-Library',
+  title: 'PagePeer',
   description: 'Civic Auth Hackathon Project',
 };
 
