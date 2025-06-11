@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'; 
+export const dynamic = 'force-dynamic';
 
 import { MongoClient } from 'mongodb';
 import ClientLibrary from './ClientLibrary';
@@ -39,5 +39,10 @@ async function getUserBooks(): Promise<Book[]> {
 
 export default async function LibraryPage() {
   const books = await getUserBooks();
-  return <ClientLibrary books={books} />;
+
+  return (
+    <div className="relative z-10 bg-neutral-950 text-neutral-100 min-h-screen">
+      <ClientLibrary books={books} />
+    </div>
+  );
 }
