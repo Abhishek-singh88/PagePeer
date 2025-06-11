@@ -13,25 +13,18 @@ export default function ClientLibrary({ books }: { books: Book[] }) {
 
   if (!bookList || bookList.length === 0) {
     return (
-      <div style={{ textAlign: 'center', marginTop: '2rem', fontSize: '1.2rem' }}>
+      <div className="text-center mt-12 text-xl text-neutral-300">
         Your library is empty.
       </div>
     );
   }
 
   return (
-    <div style={{ maxWidth: '900px', margin: '2rem auto', padding: '0 1rem' }}>
-      <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '2rem', marginBottom: '2rem' }}>
+    <div className="max-w-6xl mx-auto py-12 px-4">
+      <h1 className="text-center font-bold text-3xl text-white mb-10">
         Your Library
       </h1>
-
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '1.5rem',
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {bookList.map((book) => (
           <BookCard key={book._id} book={book} onDelete={handleDelete} />
         ))}
