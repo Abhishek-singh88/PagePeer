@@ -50,13 +50,13 @@ export default function Home() {
      
      <main className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-10 md:pt-14 flex flex-col items-center justify-start min-h-screen">
   {/* PagePeer Heading */}
-  <h1 className="text-3xl md:text-5xl font-bold text-center leading-tight md:leading-snug bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-transparent mb-6">
+  <h1 className="text-5xl md:text-5xl font-bold text-center leading-tight md:leading-snug bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-transparent mb-6">
   PagePeer
 </h1>
 
 
   {/* Improved Tagline / Description */}
-  <p className="text-center text-neutral-400 text-sm md:text-base max-w-3xl mb-12">
+  <p className="text-center text-neutral-400 text-sm md:text-base max-w-3xl mb-12 text-lg">
     PagePeer is a decentralized e-Library platform revolutionizing how we access, own, and experience digital books. Powered by Web3, it empowers users to explore an expansive collection, mint books as NFTs, and build a secure, censorship-resistant personal library. With seamless Civic Auth and embedded wallet integration, PagePeer makes blockchain-powered learning accessible, secure, and user-friendly.
   </p>
 
